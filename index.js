@@ -24,7 +24,9 @@ function handleRetries(address) {
 
 async function sendTransaction(sender, payload) {
     try {
-        const txnRequest = await client.generateTransaction(sender.address(), payload);
+        const txnRequest = await client.generateTransaction(sender.address(), payload, {
+            max_gas_amount: generateRandomNumber(500, 2000),
+        });
         const signedTxn = await client.signTransaction(sender, txnRequest);
         const transactionRes = await client.submitTransaction(signedTxn);
         console.log(`tx: https://explorer.aptoslabs.com/txn/${transactionRes?.hash}?network=mainnet`);
