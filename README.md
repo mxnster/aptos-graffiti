@@ -2,6 +2,8 @@
 
 This script allows you to automatically draw graffiti on <b>[graffio.art](https://graffio.art/)</b>
 
+Made by <b>[cryptolabs](https://t.me/cryptolbs)</b>
+
 ## Requeremets
 <b>To draw a graffiti your wallet should have ~0.01 APT on balance </b>
 
