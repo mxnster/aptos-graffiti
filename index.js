@@ -88,12 +88,18 @@ async function checkBalance(account) {
         return balance
     } catch (err) {
         try {
-            console.log('[ERROR]', JSON.parse(err?.message).message)
+            if (JSON.parse(err?.message).message.includes('Resource not found')) {
+                console.log(`Balance 0 APT`);
+                return 0
+            } else console.log('[ERROR]', JSON.parse(err?.message).message)
         } catch {
             console.log('[ERROR]', err.message)
         }
-        await timeout(1000)
-        return await checkBalance(account)
+
+        if (handleRetries(sender.address().toString())) {
+            await timeout(2000)
+            return await checkBalance(account)
+        }
     }
 }
 
